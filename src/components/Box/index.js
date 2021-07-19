@@ -58,4 +58,4 @@ button {
 }
 `; 
 
-export default Box
+export default Box;
