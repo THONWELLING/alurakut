@@ -1,6 +1,4 @@
 import React from 'react'
-import { Main } from 'next/document'
-import styled from 'styled-components'
 
 import MainGrid from '../src/components/MainGrid'
 import Box from '../src/components/Box'
@@ -12,7 +10,7 @@ import { ProfileRelationsBoxWrapper } from '../src/components/ProfileRelations';
 function ProfileSidebar(props) {
   return (
     <Box as="aside" >
-      <img src={`https://github.com/${props.githubUser}.png`}  style={{borderRadius: '8px'}} />
+      <img src={`https://github.com/${props.githubUser}.png`}  style={{borderRadius: '12px'}} />
       <hr />
       <p>
         <a className="boxLink" href={`https://github.com/${props.githubUser}.`}>
@@ -33,8 +31,10 @@ export default function Home() {
     title:'Eu odeio acordar cedo',
     image: 'https://alurakut.vercel.app/capa-comunidade-01.jpg'
   }]);
+
  // const comunities = ['Alurakut'];
-  const pessoasFavoritas = [
+
+  const favoritePeople = [
     'juunegreiros',
     'omariosouto', 
     'peas',
@@ -44,7 +44,7 @@ export default function Home() {
     'gabrielfbarros',
     'SpruceGabriela',
     'Rafaelfaustini'
-]
+  ]
 
   return (
     <>
@@ -56,7 +56,7 @@ export default function Home() {
         <div className="welcomeArea" style={{ gridArea: 'welcomeArea'}}>
           <Box >
             <h1 className="title">
-              Bem Vindo(a)
+              Bem Vindo(a) ThonWelling
             </h1>
             <OrkutNostalgicIconSet />
           </Box>
@@ -97,6 +97,9 @@ export default function Home() {
         </div>
         <div className="profileRelationsArea" style={{ gridArea: 'profileRelationsArea'}}>
           <ProfileRelationsBoxWrapper >
+            <h2 className="smallTitle">
+              Comunidades({communities.length})
+            </h2>
             <ul>
               {communities.map((itemAtual) =>{
                 return(
@@ -112,10 +115,10 @@ export default function Home() {
           </ProfileRelationsBoxWrapper>
           <ProfileRelationsBoxWrapper >
             <h2 className="smallTitle">
-              Pessoas de Comunidade({pessoasFavoritas.length})
+              Devs Inspiração({favoritePeople.length})
             </h2>
             <ul>
-              {pessoasFavoritas.map((itemAtual) =>{
+              {favoritePeople.map((itemAtual) =>{
                 return(
                   <li key={itemAtual}>
                     <a href={`/users/${itemAtual}`}>

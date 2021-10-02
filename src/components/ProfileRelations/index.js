@@ -21,7 +21,7 @@ ul li a {
     height: 102px;
     position: relative;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 6px;
     span {
     color: #FFFFFF;
     font-size: 10px;

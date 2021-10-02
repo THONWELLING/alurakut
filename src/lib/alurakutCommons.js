@@ -144,7 +144,7 @@ const v = '1';
         background-image: url(${`${BASE_URL}/icons/search.svg`});
         background-position: 15px center;
         background-repeat: no-repeat;
-        border-radius: 1000px;
+        border-radius: 8px;
         font-size: 12px;
         ::placeholder {
             color: #ffffff;
@@ -156,7 +156,7 @@ const v = '1';
     AlurakutMenu.Logo = styled.img`
     background-color: #ffffff;
     padding: 9px 14px;
-    border-radius: 1000px;
+    border-radius: 8px;
     height: 34px;
     `;
 
