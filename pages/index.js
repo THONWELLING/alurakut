@@ -17,7 +17,7 @@ function ProfileSidebar(props) {
           @{props.githubUser}
         </a>
       </p>
-      <hr />
+      <hr /> 
       <AlurakutProfileSidebarMenuDefault />
     </Box>
   )
@@ -76,10 +76,10 @@ export default function Home() {
               }}>
               <div>
                 <input 
-                  placeholder="Qual vai ser o nome da comuniadde?" 
-                  name="title" 
-                  aria-label="Qual vai ser o nome da comuniadde?"
                   type="text"
+                  name="title" 
+                  placeholder="Qual vai ser o nome da comunidade?" 
+                  aria-label="Qual vai ser o nome da comunidade?"
                 />
               </div>
               <div>
