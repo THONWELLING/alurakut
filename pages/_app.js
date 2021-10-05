@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     background-color: #09E6F6;
+    background-image: url('/background2.jpg');
     font-family: sans-serif;
   }
   #_next{
