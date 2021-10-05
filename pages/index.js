@@ -26,7 +26,7 @@ function ProfileSidebar(props) {
 
 export default function Home() {
   const githubUser = 'THONWELLING';
-  const [communities, setComunities] = React.useState([{
+  const [communities, setCommunities] = React.useState([{
     id:'123456',
     title:'Eu odeio acordar cedo',
     image: 'https://alurakut.vercel.app/capa-comunidade-01.jpg'
@@ -46,6 +46,7 @@ export default function Home() {
     'Rafaelfaustini'
   ]
   //1-pegar o  array de dados do github
+
   const [followers, setFollowers] = React.useState([])
   React.useEffect(function() {
     fetch('https://api.github.com/users/peas/followers')
@@ -55,6 +56,30 @@ export default function Home() {
     .then(function(fullResponse) {
       setFollowers(fullResponse);
     })
+
+    // API GraphQl
+    fetch('https://graphql.datocms.com/',
+    {
+      method: 'POST',
+      headers:{
+        'Authorization': 'ae6b44fc6dad7fc46c5a69eb2e1e75',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({"query": `query {
+          allCommunities {
+            tittle
+            id
+            imageUrl
+            creatorSlug
+          }
+      }` })
+    }).then((response) => response.json())//pega a retorno do response.jason() e retorna ele direto
+      .then((fullResponse) => {
+        const communitiesComeDato = fullResponse.data.allCommunities
+        
+        setCommunities(communitiesComeDato)
+      })
   }, []);
 
   //2-criar um box que vai ter um map, nos itens  do array que pegamos do github
@@ -141,8 +166,8 @@ export default function Home() {
               {communities.map((itemAtual) =>{
                 return(
                   <li key={itemAtual.id}>
-                    <a href={`/users/${itemAtual.title}`}>
-                      <img src={itemAtual.image} />
+                    <a href={`/communities/${itemAtual.id}`}>
+                      <img src={itemAtual.imageUrl} />
                       <span>{itemAtual.title}</span>
                     </a>
                   </li>
