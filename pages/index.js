@@ -7,13 +7,14 @@ import { ProfileRelationsBoxWrapper } from '../src/components/ProfileRelations';
 
 
 
+
 function ProfileSidebar(props) {
   return (
     <Box as="aside" >
       <img src={`https://github.com/${props.githubUser}.png`}  style={{borderRadius: '12px'}} />
       <hr />
       <p>
-        <a className="boxLink" href={`https://github.com/${props.githubUser}.`}>
+        <a className="boxLink" href={`https://github.com/${props.githubUser}`}>
           @{props.githubUser}
         </a>
       </p>
@@ -26,11 +27,7 @@ function ProfileSidebar(props) {
 
 export default function Home() {
   const githubUser = 'THONWELLING';
-  const [communities, setCommunities] = React.useState([{
-    id:'123456',
-    title:'Eu odeio acordar cedo',
-    image: 'https://alurakut.vercel.app/capa-comunidade-01.jpg'
-  }]);
+  const [communities, setCommunities] = React.useState([]);
 
  // const comunities = ['Alurakut'];
 
@@ -45,6 +42,7 @@ export default function Home() {
     'SpruceGabriela',
     'Rafaelfaustini'
   ]
+
   //1-pegar o  array de dados do github
 
   const [followers, setFollowers] = React.useState([])
@@ -58,6 +56,7 @@ export default function Home() {
     })
 
     // API GraphQl
+
     fetch('https://graphql.datocms.com/',
     {
       method: 'POST',
@@ -114,26 +113,41 @@ export default function Home() {
         </div>
 
         <div className="welcomeArea" style={{ gridArea: 'welcomeArea'}}>
+
           <Box >
             <h1 className="title">
               Bem Vindo(a) ThonWelling
             </h1>
             <OrkutNostalgicIconSet />
           </Box>
+
           <Box>
             <h2 className="subTitle">O que você deseja fazer?</h2>
-            <form onSubmit={function handleMakeComunity(e){
+            <form onSubmit={function handleMakeCommunity(e){
+              e.preventDefault()
                 const formData = new FormData(e.target);
 
                 const community ={
-                  id:new Date().toISOString(),
-                  title:formData.get('title'),
-                  image:formData.get('image')
+                  title: formData.get('title'),
+                  imageUrl: formData.get('image'),
+                  creatorSlug: githubUser,
                 }
-                const updatedCommunities = [...communities, community]
-                
-                setCommunities(updatedCommunities);
-              }}>
+
+                fetch('/api/communities', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(community)
+                })
+                .then(async (response) => {
+                  const data = await response.json()
+                  console.log(data.createRecord)
+                  const community = data.createRecord
+                  const updatedCommunities = [...communities, community]                
+                  setCommunities(updatedCommunities);
+                })
+            }}>
               <div>
                 <input 
                   type="text"
@@ -168,7 +182,7 @@ export default function Home() {
                   <li key={itemAtual.id}>
                     <a href={`/communities/${itemAtual.id}`}>
                       <img src={itemAtual.imageUrl} />
-                      <span>{itemAtual.title}</span>
+                      <span>{itemAtual.tittle}</span>
                     </a>
                   </li>
                 )
@@ -182,7 +196,7 @@ export default function Home() {
             <ul>
               {favoritePeople.map((itemAtual) =>{
                 return(
-                  <li key={itemAtual}>
+                  <li key={itemAtual.id}>
                     <a href={`/users/${itemAtual}`}>
                       <img src={`https://github.com/${itemAtual}.png`} />
                       <span>{itemAtual}</span>
