@@ -1,4 +1,4 @@
-import {SiteClient} from 'datocms-client'
+import { SiteClient } from 'dato-client'
 
 export default async function requestTaker(request, response){
   if(request.method === 'POST') {

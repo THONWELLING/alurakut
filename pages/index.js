@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import MainGrid from '../src/components/MainGrid'
 import Box from '../src/components/Box'
@@ -24,10 +24,11 @@ function ProfileSidebar(props) {
   )
 }
 
+ 
 
-export default function Home() {
-  const githubUser = 'THONWELLING';
-  const [communities, setCommunities] = React.useState([]);
+export default function Home(props) {
+  const githubUser = props.githubUser;
+  const [communities, setCommunities] = useState([ ]);
 
  // const comunities = ['Alurakut'];
 
@@ -45,8 +46,9 @@ export default function Home() {
 
   //1-pegar o  array de dados do github
 
-  const [followers, setFollowers] = React.useState([])
-  React.useEffect(function() {
+  const [followers, setFollowers] = useState([])
+
+  useEffect(() => {
     fetch('https://api.github.com/users/peas/followers')
     .then(function(serverAnswer) {
       return serverAnswer.json()
@@ -61,19 +63,19 @@ export default function Home() {
     {
       method: 'POST',
       headers:{
-        'Authorization': 'ae6b44fc6dad7fc46c5a69eb2e1e75',
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        'Authorization' : 'ae6b44fc6dad7fc46c5a69eb2e1e75',
+        'Content-Type' : 'application/json',
+        'Accept' : 'application/json',
       },
-      body: JSON.stringify({"query": `query {
+      body: JSON.stringify({"query" : `query {
           allCommunities {
-            tittle
-            id
-            imageUrl
-            creatorSlug
-          }
+          tittle
+          id
+          imageUrl
+          creatorSlug
+        }
       }` })
-    }).then((response) => response.json())//pega a retorno do response.jason() e retorna ele direto
+    }).then((response) => response.json()) //pega a retorno do response.jason() e retorna ele direto
       .then((fullResponse) => {
         const communitiesComeDato = fullResponse.data.allCommunities
         
@@ -83,19 +85,19 @@ export default function Home() {
 
   //2-criar um box que vai ter um map, nos itens  do array que pegamos do github
 
-  function ProfileRelationsBox(props) {
+ function ProfileRelationsBox(props) {
     return(
       <ProfileRelationsBoxWrapper >
         <h2 className="smallTitle">
           {props.tittle}({props.items.length})
         </h2>
         <ul>
-          {followers.map((itemAtual) =>{
+          {followers.map((itemAtual) => {
             return(
-              <li key={itemAtual}>
+              <li key={itemAtual.id}>
                 <a href={`https://github.com/${itemAtual}.png`}>
-                  <img src={itemAtual.image} />
-                  <span>{itemAtual.title}</span>
+                  <img src={itemAtual.avatar_url} />
+                  <span>{itemAtual.login}</span>
                 </a>
               </li>
             )
@@ -106,7 +108,7 @@ export default function Home() {
   }
   return (
     <>
-      <AlurakutMenu />
+      <AlurakutMenu githubUser={githubUser} />
       <MainGrid>
         <div className="profileArea" style={{ gridArea: 'profileArea'}}>
           <ProfileSidebar githubUser={githubUser} />
@@ -116,14 +118,14 @@ export default function Home() {
 
           <Box >
             <h1 className="title">
-              Bem Vindo(a) ThonWelling
+              Bem Vindo(a) {githubUser}
             </h1>
             <OrkutNostalgicIconSet />
           </Box>
 
           <Box>
             <h2 className="subTitle">O que você deseja fazer?</h2>
-            <form onSubmit={function handleMakeCommunity(e){
+            <form onSubmit={function handleCreateCommunity(e){
               e.preventDefault()
                 const formData = new FormData(e.target);
 
@@ -132,7 +134,7 @@ export default function Home() {
                   imageUrl: formData.get('image'),
                   creatorSlug: githubUser,
                 }
-
+                useEffect(() => {
                 fetch('/api/communities', {
                   method: 'POST',
                   headers: {
@@ -147,7 +149,10 @@ export default function Home() {
                   const updatedCommunities = [...communities, community]                
                   setCommunities(updatedCommunities);
                 })
+              },[])
+
             }}>
+            
               <div>
                 <input 
                   type="text"
@@ -182,7 +187,7 @@ export default function Home() {
                   <li key={itemAtual.id}>
                     <a href={`/communities/${itemAtual.id}`}>
                       <img src={itemAtual.imageUrl} />
-                      <span>{itemAtual.tittle}</span>
+                      <span>{itemAtual.title}</span>
                     </a>
                   </li>
                 )
@@ -196,7 +201,7 @@ export default function Home() {
             <ul>
               {favoritePeople.map((itemAtual) =>{
                 return(
-                  <li key={itemAtual.id}>
+                  <li key={itemAtual}>
                     <a href={`/users/${itemAtual}`}>
                       <img src={`https://github.com/${itemAtual}.png`} />
                       <span>{itemAtual}</span>

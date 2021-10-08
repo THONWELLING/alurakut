@@ -54,7 +54,7 @@ const v = '1';
     width: 100%;
     background-color: #308BC5;
     .alurakutMenuProfileSidebar {
-        background: white;
+        background: transparent;
         position: fixed;
         z-index: 100;
         padding: 46px;

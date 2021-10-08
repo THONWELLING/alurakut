@@ -1,6 +1,8 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import {AlurakutStyles} from '../src/lib/alurakutCommons'
 
+
+
 const GlobalStyle = createGlobalStyle`
   *{
     margin: 0;
@@ -8,7 +10,8 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    background-color: #09E6F6;
+    background: url(https://criticalhits.com.br/wp-content/uploads/2020/04/naruto-shippuden-kakashi-hatake-quiz.jpg) no-repeat center center fixed;
+    background-size: cover;
     font-family: sans-serif;
   }
   #_next{
