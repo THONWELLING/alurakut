@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';  // Hook do NextJS
+import nookies from 'nookies'
 
 export default function LoginScreen() {
   const router = useRouter();
   const [githubUser, setGithubUser] = useState('THONWELLING');
+
 
   return (
     <main style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -19,15 +21,34 @@ export default function LoginScreen() {
         <section className="formArea">
           <form className="box"  onSubmit={(e) => {
             e.preventDefault()
-              console.log('usuário: ', setGithubUser)
+            console.log('usuário: ', githubUser)
+            fetch('https://alurakut.vercel.app/api/login', {
+              'method': 'POST',
+              'headers': {
+              'Content-Type' : 'application/json'},
+              'body': JSON.stringify({ githubUser: githubUser })
+            }).then(async(serverAnswer) => {
+              const answerData = await serverAnswer.json()
+              const token= answerData.token
+              nookies.set(null, 'USER_TOKEN', token, {
+                path: '/',
+                maxAge: 86400 * 7
+              })
               router.push('/')
+              })
             }} >
             <p>
               Acesse agora mesmo com seu usuário do <strong>GitHub</strong>!
           </p>
             <input
               placeholder="Usuário"
-              value={githubUser} />
+              value={githubUser} 
+              onChange={(e) => {
+                console.log(e.target.value)
+                setGithubUser(e.target.value)
+              }}
+              />
+              {githubUser.length === 0 ? 'Preecha o Campo'  : '' }
             <button type="submit">
               Login
             </button>

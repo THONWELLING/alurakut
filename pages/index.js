@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
 
+import nookies from 'nookies'
+import jwt from 'jsonwebtoken'
+
 import MainGrid from '../src/components/MainGrid'
 import Box from '../src/components/Box'
 import { AlurakutMenu, AlurakutProfileSidebarMenuDefault, OrkutNostalgicIconSet } from '../src/lib/alurakutCommons';
@@ -132,7 +135,7 @@ export default function Home(props) {
               const formData = new FormData(e.target);
 
               const community ={
-                title: formData.get('title'),
+                tittle: formData.get('tittle'),
                 imageUrl: formData.get('image'),
                 CreatorSlug: githubUser,
               }
@@ -215,4 +218,15 @@ export default function Home(props) {
       </MainGrid>
     </>
   )
+}
+export async function getServerSideProps(context) {
+  const cookies = nookies.get(context)
+  const token = cookies.USER_TOKEN
+  const githubUser = jwt.decode(token).githubUser
+  console.log('Token decodificado', )
+  return {
+    props: {
+      githubUser: 'omariosouto'
+    },
+  }
 }
