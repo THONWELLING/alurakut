@@ -83,6 +83,7 @@ export default function Home(props) {
       })
   }, []);
 
+
   //2-criar um box que vai ter um map, nos itens  do array que pegamos do github
 
  function ProfileRelationsBox(props) {
@@ -106,6 +107,7 @@ export default function Home(props) {
       </ProfileRelationsBoxWrapper>   
     )
   }
+
   return (
     <>
       <AlurakutMenu githubUser={githubUser} />
@@ -127,14 +129,14 @@ export default function Home(props) {
             <h2 className="subTitle">O que você deseja fazer?</h2>
             <form onSubmit={function handleCreateCommunity(e){
               e.preventDefault()
-                const formData = new FormData(e.target);
+              const formData = new FormData(e.target);
 
-                const community ={
-                  tittle: formData.get('tittle'),
-                  imageUrl: formData.get('image'),
-                  CreatorSlug: githubUser,
-                }
-                useEffect(() => {
+              const community ={
+                title: formData.get('title'),
+                imageUrl: formData.get('image'),
+                CreatorSlug: githubUser,
+              }
+
                 fetch('/api/communities', {
                   method: 'POST',
                   headers: {
@@ -149,8 +151,6 @@ export default function Home(props) {
                   const updatedCommunities = [...communities, community]                
                   setCommunities(updatedCommunities);
                 })
-              },[])
-
             }}>
             
               <div>

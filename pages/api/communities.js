@@ -11,10 +11,10 @@ export default async function requestTaker(request, response){
       //O ID do model de "communities" é criado pelo Dato por isso não está na lista abaixo
 
       itemType: '1241496',
-      ...request.body,
-      tittle:  'vou ser Fullstack',
-      imageUrl:   'https://cursos-ead.com/wp-content/uploads/2019/08/Desenvolvedor-Full-Stack.png',
-      creatorSlug: 'Thonwelling',
+      ...request.body,  
+      // tittle:  'vou ser Fullstack',
+      // imageUrl:   'https://cursos-ead.com/wp-content/uploads/2019/08/Desenvolvedor-Full-Stack.png',
+      // creatorSlug: 'Thonwelling',
     })
 
     response.json({
