@@ -20,6 +20,7 @@ margin-bottom: 10px;
     font-size: 32px;
     font-weight: 400;
     margin-bottom: 20px;
+    text-shadow: 3px 3px 3px lightblue;
 }
 .subTitle {
     font-size: 18px;

@@ -27,7 +27,7 @@ function ProfileSidebar(props) {
  
 
 export default function Home(props) {
-  const githubUser = props.githubUser;
+  const githubUser = 'THONWELLING'
   const [communities, setCommunities] = useState([ ]);
 
  // const comunities = ['Alurakut'];
@@ -64,8 +64,8 @@ export default function Home(props) {
       method: 'POST',
       headers:{
         'Authorization' : 'ae6b44fc6dad7fc46c5a69eb2e1e75',
-        'Content-Type' : 'application/json',
-        'Accept' : 'application/json',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
       },
       body: JSON.stringify({"query" : `query {
           allCommunities {
@@ -75,11 +75,11 @@ export default function Home(props) {
           creatorSlug
         }
       }` })
-    }).then((response) => response.json()) //pega a retorno do response.jason() e retorna ele direto
+    }).then((response) => response.json())       //pega a retorno do response.jason() e retorna ele direto
       .then((fullResponse) => {
-        const communitiesComeDato = fullResponse.data.allCommunities
-        
-        setCommunities(communitiesComeDato)
+        const communitiesComesDato = fullResponse.data.allCommunities
+        console.log(communitiesComesDato)               //analizando resposta do datocms    
+        setCommunities(communitiesComesDato)
       })
   }, []);
 
@@ -117,7 +117,7 @@ export default function Home(props) {
         <div className="welcomeArea" style={{ gridArea: 'welcomeArea'}}>
 
           <Box >
-            <h1 className="title">
+            <h1 className="title"  style={{color:'rgba(15, 15, 15, 0.59)'}}>
               Bem Vindo(a) {githubUser}
             </h1>
             <OrkutNostalgicIconSet />
@@ -130,9 +130,9 @@ export default function Home(props) {
                 const formData = new FormData(e.target);
 
                 const community ={
-                  title: formData.get('title'),
+                  tittle: formData.get('tittle'),
                   imageUrl: formData.get('image'),
-                  creatorSlug: githubUser,
+                  CreatorSlug: githubUser,
                 }
                 useEffect(() => {
                 fetch('/api/communities', {
@@ -187,7 +187,7 @@ export default function Home(props) {
                   <li key={itemAtual.id}>
                     <a href={`/communities/${itemAtual.id}`}>
                       <img src={itemAtual.imageUrl} />
-                      <span>{itemAtual.title}</span>
+                      <span>{itemAtual.tittle}</span>
                     </a>
                   </li>
                 )

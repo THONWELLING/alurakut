@@ -8,6 +8,7 @@ ul {
     grid-template-columns: 1fr 1fr 1fr; 
     max-height: 220px;
     list-style: none;
+    overflow: hidden;
 }
 img {
     object-fit: cover;
@@ -24,13 +25,12 @@ ul li a {
     border-radius: 6px;
     span {
     color: #FFFFFF;
-    font-size: 10px;
+    font-size: 12px;
     position: absolute;
-    left: 0;
+    text-align: center;
     bottom: 10px;
     z-index: 2;
     padding: 0 4px;
-    overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
     display: -webkit-box;
@@ -49,4 +49,4 @@ ul li a {
     background-image: linear-gradient(0deg,#00000073,transparent);
     }
 }
-`;
+`
