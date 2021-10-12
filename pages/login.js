@@ -8,7 +8,14 @@ export default function LoginScreen() {
 
 
   return (
-    <main style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <main style={{ 
+        display: 'flex', 
+        flex: 1, 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        margin: '120px'
+      }}>
+
       <div className="loginScreen">
         <section className="logoArea">
           <img src="https://alurakut.vercel.app/logo.svg" />
@@ -25,12 +32,14 @@ export default function LoginScreen() {
             fetch('https://alurakut.vercel.app/api/login', {
               'method': 'POST',
               'headers': {
-              'Content-Type' : 'application/json'},
+              'Content-Type' : 'application/json'
+              },
               'body': JSON.stringify({ githubUser: githubUser })
             }).then(async(serverAnswer) => {
               const answerData = await serverAnswer.json()
-              const token= answerData.token
-              nookies.set(null, 'USER_TOKEN', token, {
+              const token = answerData.token
+              nookies.set(null, 'USER_TOKEN', token, 
+              {
                 path: '/',
                 maxAge: 86400 * 7
               })
@@ -41,15 +50,19 @@ export default function LoginScreen() {
               Acesse agora mesmo com seu usuário do <strong>GitHub</strong>!
           </p>
             <input
-              placeholder="Usuário"
-              value={githubUser} 
-              onChange={(e) => {
-                console.log(e.target.value)
-                setGithubUser(e.target.value)
-              }}
+                placeholder="Usuário"
+                value={githubUser} 
+                onChange={(e) => {
+                  setGithubUser(e.target.value)
+                }}
               />
+
               {githubUser.length === 0 ? 'Preecha o Campo'  : '' }
-            <button type="submit">
+            
+            <button type="submit" style={{ 
+              color: '#bf00ff',
+              fontSize:'16px'
+            }}>
               Login
             </button>
           </form>

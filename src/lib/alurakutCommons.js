@@ -316,22 +316,25 @@ const v = '1';
     const AlurakutLoginScreen = css`
     :root {
         --backgroundPrimary: #D9E6F6;
-        --backgroundSecondary: #F1F9FE;
-        --backgroundTertiary: #FFFFFF;
-        --backgroundQuarternary: #BBCDE8;
+        --backgroundSecondary: rgba(0, 160, 254, 0.23);
+        --backgroundTertiary: rgba(0, 160, 254, 0.23);
+        --backgroundQuarternary:rgba (187, 205, 232, 0.23);
         --colorPrimary: #2E7BB4;
         --colorSecondary: #388BB0;
         --colorTertiary: #2F4A71;
-        --colorQuarternary: #D81D99;
-        --textPrimaryColor: #333333;
-        --textSecondaryColor: #FFFFFF;
-        --textTertiaryColor: #5A5A5A;
-        --textQuarternaryColor: #C5C6CA;
-        --commonRadius: 8px;
+        --colorQuarternary: #ec5f5f;
+        --textPrimaryColor: rgba (187, 205, 232, 0.7);
+        --textSecondaryColor: rgba (187, 205, 232, 0.7);
+        --textTertiaryColor: rgba (187, 205, 232, 0.7);
+        --textQuarternaryColor: rgba (57, 55, 50, 0.7);
+        --commonRadius: 6px;
     }
     .loginScreen {
         padding: 16px;
         max-width: 1110px;
+        color: #5e0080;
+        font-size:16px;
+        text-shadow: 1px 1px 1px #f1ccff;
         display: grid;
         --gap: 12px;
         --gutter: 16px;
@@ -351,6 +354,7 @@ const v = '1';
         grid-area: logoArea;
         background-color: var(--backgroundTertiary);
         border-radius: var(--commonRadius);
+        border: 1px solid rgba(0, 160, 254, 0.35);
         padding: var(--gutter);
         text-align: center;
         display: flex;
@@ -363,10 +367,12 @@ const v = '1';
             min-height: 368px;
         }
         p {
-            font-size: 12px;
-            line-height: 1.2;
+            font-size: 14px;
+            line-height: 1.6;
+            text-shadow: 2px 2px 2px # 757070;
             &:not(:last-child) {
             margin-bottom: 12px;
+            color: var(---textTertiaryColor);
             }
             strong {
             color: var(--colorQuarternary);
@@ -375,7 +381,13 @@ const v = '1';
         img {
             max-height: 45px;
             margin-bottom: 36px;
+            -webkit-animation:spin 4s linear infinite;
+            -moz-animation:spin 4s linear infinite;
+            animation:spin 4s linear infinite;
         }
+            @-moz-keyframes spin { 100% { -moz-transform: rotateY(360deg); } }
+            @-webkit-keyframes spin { 100% { -webkit-transform: rotateY(360deg); } }
+            @keyframes spin { 100% { -webkit-transform: rotateY(360deg); transform:rotateY(360deg); } }
         }
         .formArea {
         grid-area: formArea;
@@ -393,6 +405,7 @@ const v = '1';
             padding-right: 50px;
             background-color: var(--backgroundSecondary);
             border-radius: var(--commonRadius);
+            border: 1px solid rgba(0, 160, 254, 0.35);
             flex: 1;
             &:not(:last-child) {
             margin-bottom: var(--gap);
@@ -413,10 +426,10 @@ const v = '1';
             input {
             width: 100%;
             display: block;
-            border: 1px solid var(--textQuarternaryColor);
             padding: 12px;
             background-color: var(--backgroundTertiary);
             border-radius: var(--commonRadius);
+            border: 1px solid rgba(0, 160, 254, 0.35);
             margin-top: 24px;
             margin-bottom: 16px;
             }
@@ -437,7 +450,7 @@ const v = '1';
         border-radius: var(--commonRadius);
         padding: 8px;
         p {
-            font-size: 12px;
+            font-size: 14px;
             text-align: center;
             a {
             text-decoration: none;
