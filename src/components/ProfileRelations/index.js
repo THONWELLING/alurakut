@@ -4,7 +4,7 @@ import Box from '../Box';
 export const ProfileRelationsBoxWrapper = styled(Box)`
 ul {
     display: grid;
-    grid-gap: 8px;
+    grid-gap: 7px;
     grid-template-columns: 1fr 1fr 1fr; 
     max-height: 220px;
     list-style: none;
@@ -48,5 +48,6 @@ ul li a {
     z-indeX: 1;
     background-image: linear-gradient(0deg,#00000073,transparent);
     }
+
 }
 `

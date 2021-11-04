@@ -160,15 +160,15 @@ export default function Home(props) {
                 <input 
                   type="text"
                   name="title" 
-                  placeholder="Qual vai ser o nome da comunidade?" 
-                  aria-label="Qual vai ser o nome da comunidade?"
+                  placeholder="nome da comunidade?" 
+                  aria-label="nome da comunidade?"
                 />
               </div>
               <div>
                 <input 
-                  placeholder="Coloque uma url para usarmos de capa" 
+                  placeholder="url para usarmos de capa" 
                   name="image" 
-                  aria-label="Coloque uma url para usarmos de capa!"
+                  aria-label="url para usarmos de capa!"
                 />
               </div>
               <button>

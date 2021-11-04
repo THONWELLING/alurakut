@@ -61,7 +61,7 @@ export default function LoginScreen() {
             
             <button type="submit" style={{ 
               color: '#bf00ff',
-              fontSize:'16px'
+              fontSize:'18px'
             }}>
               Login
             </button>
@@ -81,7 +81,11 @@ export default function LoginScreen() {
 
         <footer className="footerArea">
           <p>
-            © 2021 alura.com.br - <a href="/">Sobre o Orkut.br</a> - <a href="/">Centro de segurança</a> - <a href="/">Privacidade</a> - <a href="/">Termos</a> - <a href="/">Contato</a>
+            © 2021 alura.com.br - 
+            <a href="/">Sobre o Orkut.br</a> - 
+            <a href="/">Centro de segurança</a> - 
+            <a href="/">Privacidade</a> - <a href="/">Termos</a> - 
+            <a href="/">Contato</a>
           </p>
         </footer>
       </div>

@@ -25,13 +25,22 @@ const v = '1';
             <AlurakutMenu.Logo src={`${BASE_URL}/logo.svg`} />
 
             <nav style={{ flex: 1 }}>
-            {[{ name: 'Inicio', slug: '/'}, {name: 'Amigos', slug: '/amigos'}, {name: 'Comunidades', slug: '/comunidades'}].map((menuItem) => (
-                <Link key={`key__${menuItem.name.toLocaleLowerCase()}`} href={`${menuItem.slug.toLocaleLowerCase()}`}>
-                {menuItem.name}
+                {[{ 
+                    name: 'Inicio', 
+                    slug: '/'
+                }, {
+                    name: 'Amigos', 
+                    slug: '/amigos'
+                },{
+                    name: 'Comunidades', 
+                    slug: '/comunidades'
+                }].map((menuItem) => (
+                <Link key={`key__${menuItem.name.toLocaleLowerCase()}`} 
+                    href={`${menuItem.slug.toLocaleLowerCase()}`}>
+                    {menuItem.name}
                 </Link>
-            ))}
+                ))}
             </nav>
-
             <nav>
             <a href={`/logout`}>
                 Sair
@@ -117,8 +126,10 @@ const v = '1';
             display: flex;
         }
         a {
-            font-size: 12px;
+            font-size: 17px;
             color: white;
+            opacity: 0.8;
+            text-shadow:2px 3px #141414;
             padding: 10px 16px;
             position: relative;
             text-decoration: none;
@@ -127,8 +138,8 @@ const v = '1';
             background-color: #5292C1;
             display: block;
             position: absolute;
-            width: 1px;
-            height: 12px;
+            width: 3px;
+            height: 18px;
             margin: auto;
             left: 0;
             top: 0;
@@ -138,6 +149,7 @@ const v = '1';
         }
         input {
         color: #ffffff;
+        opacity: 0.8;
         background: rgba(0, 160, 254, 0.23);
         padding: 10px 42px;
         border: 0;
@@ -145,19 +157,26 @@ const v = '1';
         background-position: 15px center;
         background-repeat: no-repeat;
         border-radius: 8px;
-        font-size: 12px;
+        font-size: 14px;
         ::placeholder {
             color: #ffffff;
-            opacity: 1;
+            opacity: 0.8;
         }
         } 
     }
     `;
     AlurakutMenu.Logo = styled.img`
     background-color: transparent;
-    padding: 9px 14px;
+    padding: 9px 28px;
     border-radius: 8px;
     height: 40px;
+    -webkit-animation:spin 4s linear infinite;
+    -moz-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
+
+    @-moz-keyframes spin { 100% { -moz-transform: rotateY(360deg); } }
+    @-webkit-keyframes spin { 100% { -webkit-transform: rotateY(360deg); } }
+    @keyframes spin { 100% { -webkit-transform: rotateY(360deg); transform:rotateY(360deg); } }
     `;
 
     function AlurakutMenuProfileSidebar({ githubUser }) {
@@ -318,15 +337,15 @@ const v = '1';
         --backgroundPrimary: #D9E6F6;
         --backgroundSecondary: rgba(0, 160, 254, 0.23);
         --backgroundTertiary: rgba(0, 160, 254, 0.23);
-        --backgroundQuarternary:rgba (187, 205, 232, 0.23);
+        --backgroundQuaternary:rgba (187, 205, 232, 0.23);
         --colorPrimary: #2E7BB4;
         --colorSecondary: #388BB0;
         --colorTertiary: #2F4A71;
-        --colorQuarternary: #ec5f5f;
+        --colorQuaternary: #ec5f5f;
         --textPrimaryColor: rgba (187, 205, 232, 0.7);
         --textSecondaryColor: rgba (187, 205, 232, 0.7);
         --textTertiaryColor: rgba (187, 205, 232, 0.7);
-        --textQuarternaryColor: rgba (57, 55, 50, 0.7);
+        --textQuaternaryColor: rgba (57, 55, 50, 0.7);
         --commonRadius: 6px;
     }
     .loginScreen {
@@ -344,8 +363,8 @@ const v = '1';
         "formArea"
         "footerArea";
         @media(min-width: 860px) {
-        grid-template-columns: 2fr 1fr;
-        grid-template-areas: 
+            grid-template-columns: 2fr 1fr;
+            grid-template-areas: 
                 "logoArea formArea"
                 "logoArea formArea"
                 "footerArea footerArea";
